@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Tableau temp
+*.tfl
+*.tflx
+*.tmp
+temp_twbx/
+
+# OS
+Thumbs.db
+.DS_Store

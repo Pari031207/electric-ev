@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<workbook original-version='18.1' source-build='2023.2.0' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <IntuitiveSorting />
+    <IntuitiveSorting_EncodingBy />
+    <SavedScenes />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='cleaned_ev_data' inline='true' name='federated.ev' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='cleaned_ev_data' name='textscan.ev'>
+            <connection class='textscan' directory='../data' filename='cleaned_ev_data.csv'>
+            </connection>
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.ev' name='cleaned_ev_data.csv' table='[cleaned_ev_data#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='ModelID' ordinal='0' />
+            <column datatype='string' name='Manufacturer' ordinal='1' />
+            <column datatype='string' name='Model' ordinal='2' />
+            <column datatype='string' name='VehicleCategory' ordinal='3' />
+            <column datatype='string' name='BatteryType' ordinal='4' />
+            <column datatype='integer' name='BatteryCapacity' ordinal='5' />
+            <column datatype='integer' name='DrivingRange' ordinal='6' />
+            <column datatype='integer' name='Price' ordinal='7' />
+            <column datatype='integer' name='AnnualSales' ordinal='8' />
+            <column datatype='integer' name='Year' ordinal='9' />
+            <column datatype='string' name='ManufacturingCountry' ordinal='10' />
+            <column datatype='real' name='CustomerRating' ordinal='11' />
+            <column datatype='integer' name='ChargingTimeMinutes' ordinal='12' />
+            <column datatype='real' name='MarketSharePct' ordinal='13' />
+            <column datatype='real' name='SalesGrowthPct' ordinal='14' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>ModelID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ModelID]</local-name>
+            <parent-name>[cleaned_ev_data.csv]</parent-name>
+            <remote-alias>ModelID</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Manufacturer</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Manufacturer]</local-name>
+            <parent-name>[cleaned_ev_data.csv]</parent-name>
+            <remote-alias>Manufacturer</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>VehicleCategory</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[VehicleCategory]</local-name>
+            <parent-name>[cleaned_ev_data.csv]</parent-name>
+            <remote-alias>VehicleCategory</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BatteryType</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[BatteryType]</local-name>
+            <parent-name>[cleaned_ev_data.csv]</parent-name>
+            <remote-alias>BatteryType</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>AnnualSales</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[AnnualSales]</local-name>
+            <parent-name>[cleaned_ev_data.csv]</parent-name>
+            <remote-alias>AnnualSales</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>DrivingRange</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[DrivingRange]</local-name>
+            <parent-name>[cleaned_ev_data.csv]</parent-name>
+            <remote-alias>DrivingRange</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BatteryCapacity</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[BatteryCapacity]</local-name>
+            <parent-name>[cleaned_ev_data.csv]</parent-name>
+            <remote-alias>BatteryCapacity</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ManufacturingCountry</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ManufacturingCountry]</local-name>
+            <parent-name>[cleaned_ev_data.csv]</parent-name>
+            <remote-alias>ManufacturingCountry</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Market Share Calculated %' datatype='real' default-format='p0.0%' name='[Calculation_MarketShare_Pct]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([AnnualSales]) / TOTAL(SUM([AnnualSales]))' />
+      </column>
+      <column caption='Top Manufacturer Share' datatype='real' default-format='p0.0%' name='[Calculation_Top_Mfr_Share]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='WINDOW_MAX(SUM([AnnualSales])) / TOTAL(SUM([AnnualSales]))' />
+      </column>
+      <column datatype='string' name='[Manufacturer]' role='dimension' type='nominal' />
+      <column datatype='string' name='[VehicleCategory]' role='dimension' type='nominal' />
+      <column datatype='string' name='[BatteryType]' role='dimension' type='nominal' />
+      <column datatype='string' name='[ManufacturingCountry]' role='dimension' semantic-role='[Country].[Name]' type='nominal' />
+      <column datatype='integer' name='[Year]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[AnnualSales]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[DrivingRange]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[BatteryCapacity]' role='measure' type='quantitative' />
+      <column datatype='real' name='[CustomerRating]' role='measure' type='quantitative' />
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='KPI_Cards'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned_ev_data' name='federated.ev' />
+          </datasources>
+          <datasource-dependencies datasource='federated.ev'>
+            <column datatype='integer' name='[AnnualSales]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[DrivingRange]' role='measure' type='quantitative' />
+            <column datatype='integer' name='[BatteryCapacity]' role='measure' type='quantitative' />
+            <column datatype='real' name='[CustomerRating]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='ws-ev-kpi' />
+    </worksheet>
+    <worksheet name='Sales_by_Category'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned_ev_data' name='federated.ev' />
+          </datasources>
+          <datasource-dependencies datasource='federated.ev'>
+            <column datatype='string' name='[VehicleCategory]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[AnnualSales]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.ev].[none:VehicleCategory:nk]</rows>
+        <cols>[federated.ev].[sum:AnnualSales:qk]</cols>
+      </table>
+      <simple-id uuid='ws-sales-cat' />
+    </worksheet>
+    <worksheet name='Sales_and_MarketShare_by_Manufacturer'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned_ev_data' name='federated.ev' />
+          </datasources>
+          <datasource-dependencies datasource='federated.ev'>
+            <column datatype='string' name='[Manufacturer]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[AnnualSales]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.ev].[none:Manufacturer:nk]</rows>
+        <cols>[federated.ev].[sum:AnnualSales:qk]</cols>
+      </table>
+      <simple-id uuid='ws-sales-mfr' />
+    </worksheet>
+    <worksheet name='Battery_Tech_Distribution'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned_ev_data' name='federated.ev' />
+          </datasources>
+          <datasource-dependencies datasource='federated.ev'>
+            <column datatype='string' name='[BatteryType]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[AnnualSales]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='ws-battery-tech' />
+    </worksheet>
+    <worksheet name='Driving_Range_by_Category_Battery'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned_ev_data' name='federated.ev' />
+          </datasources>
+          <datasource-dependencies datasource='federated.ev'>
+            <column datatype='string' name='[VehicleCategory]' role='dimension' type='nominal' />
+            <column datatype='string' name='[BatteryType]' role='dimension' type='nominal' />
+            <column datatype='integer' name='[DrivingRange]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+          </pane>
+        </panes>
+        <rows>[federated.ev].[none:VehicleCategory:nk]</rows>
+        <cols>[federated.ev].[avg:DrivingRange:qk]</cols>
+      </table>
+      <simple-id uuid='ws-range-cat' />
+    </worksheet>
+    <worksheet name='Manufacturing_Country_Map'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned_ev_data' name='federated.ev' />
+          </datasources>
+          <datasource-dependencies datasource='federated.ev'>
+            <column datatype='string' name='[ManufacturingCountry]' role='dimension' semantic-role='[Country].[Name]' type='nominal' />
+            <column datatype='integer' name='[AnnualSales]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Map' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='ws-mfg-country' />
+    </worksheet>
+    <worksheet name='Customer_Rating_by_Category_Manufacturer'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='cleaned_ev_data' name='federated.ev' />
+          </datasources>
+          <datasource-dependencies datasource='federated.ev'>
+            <column datatype='string' name='[Manufacturer]' role='dimension' type='nominal' />
+            <column datatype='string' name='[VehicleCategory]' role='dimension' type='nominal' />
+            <column datatype='real' name='[CustomerRating]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Square' />
+          </pane>
+        </panes>
+        <rows>[federated.ev].[none:Manufacturer:nk]</rows>
+        <cols>[federated.ev].[none:VehicleCategory:nk]</cols>
+      </table>
+      <simple-id uuid='ws-rating-heat' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='1_Executive_Strategy_Dashboard'>
+      <style />
+      <size maxheight='850' maxwidth='1200' minheight='850' minwidth='1200' type='fixed' />
+      <zones>
+        <zone h='100000' id='1' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='96000' id='2' param='vert' type-v2='layout-flow' w='98000' x='1000' y='2000'>
+            <zone h='15000' id='3' name='KPI_Cards' w='98000' x='1000' y='2000' />
+            <zone h='40000' id='4' name='Sales_by_Category' w='98000' x='1000' y='17000' />
+            <zone h='41000' id='5' name='Sales_and_MarketShare_by_Manufacturer' w='98000' x='1000' y='57000' />
+          </zone>
+        </zone>
+      </zones>
+      <simple-id uuid='dash-exec-strategy' />
+    </dashboard>
+    <dashboard name='2_Competitive_Intelligence_Dashboard'>
+      <style />
+      <size maxheight='850' maxwidth='1200' minheight='850' minwidth='1200' type='fixed' />
+      <zones>
+        <zone h='100000' id='10' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='96000' id='11' param='vert' type-v2='layout-flow' w='98000' x='1000' y='2000'>
+            <zone h='48000' id='12' name='Sales_and_MarketShare_by_Manufacturer' w='98000' x='1000' y='2000' />
+            <zone h='48000' id='13' name='Customer_Rating_by_Category_Manufacturer' w='98000' x='1000' y='50000' />
+          </zone>
+        </zone>
+      </zones>
+      <simple-id uuid='dash-comp-intel' />
+    </dashboard>
+    <dashboard name='3_Technology_Research_Dashboard'>
+      <style />
+      <size maxheight='850' maxwidth='1200' minheight='850' minwidth='1200' type='fixed' />
+      <zones>
+        <zone h='100000' id='20' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='96000' id='21' param='vert' type-v2='layout-flow' w='98000' x='1000' y='2000'>
+            <zone h='48000' id='22' name='Battery_Tech_Distribution' w='98000' x='1000' y='2000' />
+            <zone h='48000' id='23' name='Driving_Range_by_Category_Battery' w='98000' x='1000' y='50000' />
+          </zone>
+        </zone>
+      </zones>
+      <simple-id uuid='dash-tech-res' />
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class='worksheet' name='KPI_Cards'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+  </windows>
+</workbook>
