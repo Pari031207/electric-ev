@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global EV Market Analysis Dashboard (2021–2024)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090e17;
+      --card-bg: #111a2e;
+      --card-border: #1e2c4a;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --teal: #14b8a6;
+      --blue: #38bdf8;
+      --amber: #f59e0b;
+      --purple: #a855f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 40px;
+    }
+    header {
+      background: linear-gradient(135deg, #090e17 0%, #064e3b 100%);
+      border-bottom: 1px solid var(--card-border);
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .header-title h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #34d399, #38bdf8, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header-title p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      background: #050a12;
+      padding: 6px;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 24px auto;
+      padding: 0 24px;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--primary);
+    }
+    .kpi-card.blue::before { background: var(--blue); }
+    .kpi-card.amber::before { background: var(--amber); }
+    .kpi-card.purple::before { background: var(--purple); }
+    .kpi-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .kpi-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-top: 6px;
+      color: #fff;
+    }
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 992px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    .chart-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px 24px;
+    }
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .chart-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .chart-badge {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .chart-container {
+      position: relative;
+      height: 310px;
+      width: 100%;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 32px;
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-title">
+      <h1>Global EV Market Analysis Dashboard</h1>
+      <p>Market Trends, Battery Technology &amp; Competitive Performance (2021–2024)</p>
+    </div>
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('dash1')">1. Executive Strategy</button>
+      <button class="tab-btn" onclick="switchTab('dash2')">2. Competitive Intel</button>
+      <button class="tab-btn" onclick="switchTab('dash3')">3. Technology Research</button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- KPI Row -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <span class="kpi-label">Total Fleet Volume</span>
+        <span class="kpi-val">34.3M</span>
+        <span class="kpi-sub">Units delivered 2021–2024</span>
+      </div>
+      <div class="kpi-card blue">
+        <span class="kpi-label">Average Driving Range</span>
+        <span class="kpi-val">395.8 km</span>
+        <span class="kpi-sub">Fleet highway &amp; urban benchmark</span>
+      </div>
+      <div class="kpi-card amber">
+        <span class="kpi-label">Average Battery Pack</span>
+        <span class="kpi-val">93.6 kWh</span>
+        <span class="kpi-sub">Across passenger &amp; commercial</span>
+      </div>
+      <div class="kpi-card purple">
+        <span class="kpi-label">Customer Satisfaction</span>
+        <span class="kpi-val">4.27 / 5.0</span>
+        <span class="kpi-sub">Weighted rating index</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Top OEM Market Share</span>
+        <span class="kpi-val">22.4%</span>
+        <span class="kpi-sub">Tesla &amp; BYD leading duopoly</span>
+      </div>
+    </div>
+
+    <!-- TAB 1: Executive Strategy (Emily Johnson) -->
+    <div id="dash1" class="tab-content active">
+      <div class="grid-2">
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Annual Sales Growth by Vehicle Category (2021–2024)</span>
+            <span class="chart-badge">Segment Dynamics</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartCategorySales"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Leading Manufacturer Sales &amp; Market Share %</span>
+            <span class="chart-badge">Volume Leadership</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartMfrSales"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Competitive Intelligence (David Chen) -->
+    <div id="dash2" class="tab-content">
+      <div class="grid-2">
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Global Manufacturing Footprint (Active Models by Country)</span>
+            <span class="chart-badge">Production Base</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartMfgBase"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Customer Satisfaction Index by Manufacturer</span>
+            <span class="chart-badge">Product Quality</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartRatingMfr"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Technology Research (Dr. Sarah Williams) -->
+    <div id="dash3" class="tab-content">
+      <div class="grid-2">
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Battery Chemistry Adoption Share</span>
+            <span class="chart-badge">LFP vs. NMC vs. Next-Gen</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartBatteryTech"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <span class="chart-title">Average Real-World Driving Range by Battery Type (km)</span>
+            <span class="chart-badge">Range Efficiency</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chartRangeChemistry"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Global EV Market Analysis &bull; Strategy &amp; Intelligence &bull; <a href="https://github.com/Pari031207/electric-ev" target="_blank">View GitHub Repository</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    Chart.defaults.color = '#94a3b8';
+    Chart.defaults.borderColor = '#1e2c4a';
+
+    // Chart Category Sales
+    new Chart(document.getElementById('chartCategorySales'), {
+      type: 'bar',
+      data: {
+        labels: ['SUV', 'Sedan', 'Two-wheeler', 'Hatchback', 'Truck', 'Bus'],
+        datasets: [
+          { label: '2021', data: [3.2, 2.6, 2.1, 1.4, 0.6, 0.15], backgroundColor: '#1e3a8a' },
+          { label: '2022', data: [4.4, 3.4, 3.0, 1.9, 0.8, 0.20], backgroundColor: '#0284c7' },
+          { label: '2023', data: [6.1, 4.6, 4.2, 2.7, 1.2, 0.28], backgroundColor: '#06b6d4' },
+          { label: '2024', data: [8.5, 6.2, 5.8, 3.8, 1.8, 0.38], backgroundColor: '#10b981' }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { grid: { color: '#1e2c4a' } },
+          y: { title: { display: true, text: 'Sales (Million Units)' }, grid: { color: '#1e2c4a' } }
+        }
+      }
+    });
+
+    // Chart Mfr Sales
+    new Chart(document.getElementById('chartMfrSales'), {
+      type: 'bar',
+      data: {
+        labels: ['Tesla', 'BYD', 'Volkswagen', 'Hyundai', 'BMW', 'Tata Motors', 'Mercedes-Benz', 'Rivian', 'NIO', 'Volvo'],
+        datasets: [{
+          label: 'Total Sales (Million Units)',
+          data: [7.65, 6.58, 4.12, 3.40, 2.95, 2.45, 2.10, 1.65, 1.48, 1.12],
+          backgroundColor: '#38bdf8',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { x: { beginAtZero: true } }
+      }
+    });
+
+    // Chart Mfg Base
+    new Chart(document.getElementById('chartMfgBase'), {
+      type: 'bar',
+      data: {
+        labels: ['China', 'USA', 'Germany', 'South Korea', 'India', 'Sweden', 'Japan'],
+        datasets: [{
+          label: 'Active Model Variants Manufactured',
+          data: [185, 120, 95, 48, 42, 22, 13],
+          backgroundColor: '#10b981',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    // Chart Rating Mfr
+    new Chart(document.getElementById('chartRatingMfr'), {
+      type: 'bar',
+      data: {
+        labels: ['Tesla', 'BMW', 'Mercedes-Benz', 'BYD', 'Hyundai', 'Volkswagen', 'Rivian', 'Tata Motors'],
+        datasets: [{
+          label: 'Customer Rating (/5.0)',
+          data: [4.65, 4.58, 4.52, 4.41, 4.35, 4.28, 4.22, 4.15],
+          backgroundColor: '#fbbf24',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { min: 3.5, max: 5.0 } }
+      }
+    });
+
+    // Chart Battery Tech
+    new Chart(document.getElementById('chartBatteryTech'), {
+      type: 'doughnut',
+      data: {
+        labels: ['LFP (Lithium Iron Phosphate)', 'NMC (Nickel Manganese Cobalt)', 'NCA (Nickel Cobalt Aluminum)', 'Sodium-Ion', 'Solid-State'],
+        datasets: [{
+          data: [52, 34, 10, 3, 1],
+          backgroundColor: ['#10b981', '#38bdf8', '#f59e0b', '#fb923c', '#a855f7']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'right' } }
+      }
+    });
+
+    // Chart Range Chemistry
+    new Chart(document.getElementById('chartRangeChemistry'), {
+      type: 'bar',
+      data: {
+        labels: ['Solid-State (Pilot)', 'NCA', 'NMC', 'LFP', 'Sodium-Ion'],
+        datasets: [{
+          label: 'Average Driving Range (km)',
+          data: [780, 520, 480, 375, 260],
+          backgroundColor: ['#a855f7', '#f59e0b', '#38bdf8', '#10b981', '#fb923c'],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+  </script>
+</body>
+</html>
